@@ -12,8 +12,8 @@
     <xacro:robotiq_hande_ros2_control name="${name}" prefix="${prefix}" tty="${tty}" use_fake_hardware="${use_fake_hardware}"/>
 
     <!-- Robotiq Coupler -->
-    <!--  + Height added by the coupler: 13.9mm -->
-    <!--  + Reference frame: at the middle (6.95mm) -->
+    <!--  + Height added by the coupler (13.9mm) -->
+    <!--  + Reference frame at the middle (6.95mm) -->
 
     <joint name="robotiq_hande_coupler_joint" type="fixed">
       <origin xyz="0 0 0.00695" rpy="0 0 ${-pi/2.0}"/>

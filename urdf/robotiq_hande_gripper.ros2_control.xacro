@@ -14,7 +14,7 @@
       </hardware>
 
       <!-- The right finger joint uses the mimic feature -->
-      <joint name="${prefix}hande_left_finger_joint">
+      <joint name="${prefix}robotiq_hande_left_finger_joint">
         <command_interface name="position">
           <param name="min">0</param>
           <param name="max">0.025</param>
