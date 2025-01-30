@@ -7,8 +7,8 @@ This package contains meshes and URDF description of [Robotiq Hand-E gripper](ht
 - Package has been developed and tested in ROS 2 Humble.
 
 
-> [!IMPORTANT]  
-> The fingers' joints can be set from **0 to 25 mm** (which correspondes to the maximal grasp with from **0 to 50 mm**).
+> [!IMPORTANT]
+> The fingers' joints can be set from **0 to 25 mm** (which corresponds to the maximal grasp with from **0 to 50 mm**).
 
 ![hande_model](docs/hande_rviz.gif)
 
@@ -27,7 +27,7 @@ In your URDF (Xacro) file include the Hand-E definition. Provide a parent link (
 An example usage can be find in the [urdf/hande_preview.urdf.xacro](./urdf/robotiq_hande_gripper.urdf.xacro) file.
 
 > [!NOTE]
-> The TF frame of the end tip of the gripper is called `${prefix}hande_end`, where `${prefix}` evaluates as the second macro paramater.
+> The TF frame of the end tip of the gripper is called `${prefix}hande_end`, where `${prefix}` evaluates as the second macro parameter.
 
 
 ## Preview
@@ -43,6 +43,6 @@ ros2 launch robotiq_hande_description display.launch.py
 ```
 
 ## Credits
-- The orignal files of the gripper model were taken from the [Robotiq website](https://robotiq.com/products/hand-e-adaptive-robot-gripper).
+- The original files of the gripper model were taken from the [Robotiq website](https://robotiq.com/products/hand-e-adaptive-robot-gripper).
 - The URDF files are based on work of @cambel [repository](https://github.com/cambel/robotiq.git).
 - Preview in Rviz is based on [ROS 2 URDF Tutorial](https://github.com/ros/urdf_tutorial/tree/ros2/).
