@@ -1,32 +1,26 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
-
   <!--
     Based on the URDF file by Cristian C Beltran-Hernandez
-  -->  
+  -->
 
-  <xacro:include filename="$(find robotiq_hande_description)/urdf/materials.xacro" />
+  <xacro:include filename="$(find robotiq_hande_description)/urdf/materials.xacro"/>
 
   <xacro:macro name="robotiq_hande_gripper" params="prefix parent">
-
     <!-- Robotiq Coupler -->
     <!--  + Height added by the coupler: 13.9mm -->
     <!--  + Reference frame: at the middle (6.95mm) -->
 
     <joint name="robotiq_coupler_joint" type="fixed">
-      <origin xyz="0 0 0.00695" rpy="0 0 ${-pi/2.0}" />
+      <origin xyz="0 0 0.00695" rpy="0 0 ${-pi/2.0}"/>
       <parent link="${parent}"/>
       <child link="${prefix}robotiq_coupler"/>
     </joint>
 
     <link name="${prefix}robotiq_coupler">
       <inertial>
-        <mass value="0.168" />
-        <inertia 
-          ixx="6.17674E-05" ixy="0.0" ixz="0.0" 
-          iyy="6.17674E-05" iyz="0.0" 
-          izz="1.18125E-04"
-        />
+        <mass value="0.168"/>
+        <inertia ixx="6.17674E-05" ixy="0.0" ixz="0.0" iyy="6.17674E-05" iyz="0.0" izz="1.18125E-04"/>
       </inertial>
 
       <collision>
@@ -37,12 +31,11 @@
 
       <visual>
         <geometry>
-          <mesh filename="package://robotiq_hande_description/meshes/coupler.dae" />
+          <mesh filename="package://robotiq_hande_description/meshes/coupler.dae"/>
         </geometry>
-        <material name="DarkGrey" />
+        <material name="DarkGrey"/>
       </visual>
     </link>
-
 
     <joint name="${prefix}robotiq_hande_base_joint" type="fixed">
       <origin rpy="0 0 0" xyz="0 0 0.055"/>
@@ -53,11 +46,7 @@
     <link name="${prefix}hande_link">
       <inertial>
         <mass value="0.86387"/>
-        <inertia 
-          ixx="0.001" ixy="0.0" ixz="0.0" 
-          iyy="0.001" iyz="0.0" 
-          izz="0.0006"
-        />  
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.0006"/>
       </inertial>
 
       <collision>
@@ -75,7 +64,6 @@
       </visual>
     </link>
 
-
     <joint name="${prefix}hande_left_finger_joint" type="prismatic">
       <origin rpy="0 0 0" xyz="0 -0.025 0.0345"/>
       <parent link="${prefix}hande_link"/>
@@ -88,11 +76,7 @@
       <inertial>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <mass value="0.03804"/>
-        <inertia
-          ixx="1E-9" ixy="0.0" ixz="0.0" 
-          iyy="1E-9" iyz="0.0" 
-          izz="1E-9"
-        />
+        <inertia ixx="1E-9" ixy="0.0" ixz="0.0" iyy="1E-9" iyz="0.0" izz="1E-9"/>
       </inertial>
 
       <collision>
@@ -111,7 +95,6 @@
       </visual>
     </link>
 
-
     <joint name="${prefix}hande_right_finger_joint" type="prismatic">
       <origin rpy="0 0 0" xyz="0 0.025 0.0345"/>
       <parent link="${prefix}hande_link"/>
@@ -125,11 +108,7 @@
       <inertial>
         <origin rpy="0 0 0" xyz="0 0 0"/>
         <mass value="0.03804"/>
-        <inertia
-          ixx="1E-9" ixy="0.0" ixz="0.0" 
-          iyy="1E-9" iyz="0.0" 
-          izz="1E-9"
-        />
+        <inertia ixx="1E-9" ixy="0.0" ixz="0.0" iyy="1E-9" iyz="0.0" izz="1E-9"/>
       </inertial>
 
       <collision>
@@ -144,10 +123,9 @@
         <geometry>
           <mesh filename="package://robotiq_hande_description/meshes/finger.dae" scale="1.0 1.0 1.0"/>
         </geometry>
-        <material name="Grey" />
+        <material name="Grey"/>
       </visual>
     </link>
-
 
     <joint name="${prefix}robotiq_hande_end_joint" type="fixed">
       <origin rpy="0 0 0" xyz="0 0 0.095"/>
@@ -155,7 +133,6 @@
       <child link="${prefix}hande_end"/>
     </joint>
 
-    <link name="${prefix}hande_end" />
-
+    <link name="${prefix}hande_end"/>
   </xacro:macro>
 </robot>
