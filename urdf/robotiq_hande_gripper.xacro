@@ -7,9 +7,9 @@
   <xacro:include filename="$(find robotiq_hande_description)/urdf/materials.xacro"/>
   <xacro:include filename="$(find robotiq_hande_description)/urdf/robotiq_hande_gripper.ros2_control.xacro"/>
 
-  <xacro:macro name="robotiq_hande_gripper" params="name prefix parent tty use_fake_hardware">
+  <xacro:macro name="robotiq_hande_gripper" params="name prefix parent grip_pos_min grip_pos_max tty baudrate parity data_bits stop_bit slave_id use_fake_hardware">
     <!-- ros2_control parameters  -->
-    <xacro:robotiq_hande_ros2_control name="${name}" prefix="${prefix}" tty="${tty}" use_fake_hardware="${use_fake_hardware}"/>
+    <xacro:robotiq_hande_ros2_control name="${name}" prefix="${prefix}" grip_pos_min="${grip_pos_min}" grip_pos_max="${grip_pos_max}" tty="${tty}" baudrate="${baudrate}" parity="${parity}" data_bits="${data_bits}" stop_bit="${stop_bit}" slave_id="${slave_id}" use_fake_hardware="${use_fake_hardware}"/>
 
     <!-- Robotiq Coupler -->
     <!--  + Height added by the coupler (13.9mm) -->
