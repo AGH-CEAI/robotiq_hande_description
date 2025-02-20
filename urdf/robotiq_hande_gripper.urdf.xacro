@@ -26,6 +26,6 @@
     data_bits="$(arg data_bits)"
     stop_bit="$(arg stop_bit)"
     slave_id="$(arg slave_id)"
-    use_fake_hardware="${mock_hardware}"
+    use_fake_hardware="$(use_fake_hardware)"
   />
 </robot>
