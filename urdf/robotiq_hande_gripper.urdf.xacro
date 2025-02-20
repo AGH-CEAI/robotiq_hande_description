@@ -3,7 +3,7 @@
   <xacro:arg name="parent" default="tool0"/>
   <xacro:arg name="grip_pos_min" default="0"/>
   <xacro:arg name="grip_pos_max" default="0.025"/>
-  <xacro:arg name="tty" default="/dev/ttyUR"/>
+  <xacro:arg name="tty" default="/tmp/ttyUR"/>
   <xacro:arg name="baudrate" default="115200"/>
   <xacro:arg name="parity" default="N"/>
   <xacro:arg name="data_bits" default="8"/>
