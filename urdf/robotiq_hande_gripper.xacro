@@ -26,7 +26,6 @@
         <geometry>
           <mesh filename="package://robotiq_hande_description/meshes/coupler.dae"/>
         </geometry>
-        <material name="DarkGrey"/>
       </visual>
 
       <collision>
@@ -53,7 +52,6 @@
         <geometry>
           <mesh filename="package://robotiq_hande_description/meshes/hande.dae" scale="1.0 1.0 1.0"/>
         </geometry>
-        <material name="DarkGrey"/>
       </visual>
 
       <collision>
@@ -82,7 +80,6 @@
         <geometry>
           <mesh filename="package://robotiq_hande_description/meshes/finger.dae" scale="1.0 1.0 1.0"/>
         </geometry>
-        <material name="Grey"/>
       </visual>
 
       <collision>
@@ -114,7 +111,6 @@
         <geometry>
           <mesh filename="package://robotiq_hande_description/meshes/finger.dae" scale="1.0 1.0 1.0"/>
         </geometry>
-        <material name="Grey"/>
       </visual>
 
       <collision>
