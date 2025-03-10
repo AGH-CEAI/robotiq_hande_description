@@ -22,10 +22,12 @@
     </joint>
 
     <link name="${prefix}robotiq_hande_coupler">
-      <inertial>
-        <mass value="0.168"/>
-        <inertia ixx="6.17674E-05" ixy="0.0" ixz="0.0" iyy="6.17674E-05" iyz="0.0" izz="1.18125E-04"/>
-      </inertial>
+      <visual>
+        <geometry>
+          <mesh filename="package://robotiq_hande_description/meshes/coupler.dae"/>
+        </geometry>
+        <material name="DarkGrey"/>
+      </visual>
 
       <collision>
         <geometry>
@@ -33,25 +35,26 @@
         </geometry>
       </collision>
 
-      <visual>
-        <geometry>
-          <mesh filename="package://robotiq_hande_description/meshes/coupler.dae"/>
-        </geometry>
-        <material name="DarkGrey"/>
-      </visual>
+      <inertial>
+        <mass value="0.168"/>
+        <inertia ixx="6.17674E-05" ixy="0.0" ixz="0.0" iyy="6.17674E-05" iyz="0.0" izz="1.18125E-04"/>
+      </inertial>
     </link>
 
     <joint name="${prefix}robotiq_hande_base_joint" type="fixed">
-      <origin rpy="0 0 0" xyz="0 0 0.055"/>
+      <origin xyz="0 0 0.055" rpy="0 0 0"/>
       <parent link="${prefix}robotiq_hande_coupler"/>
       <child link="${prefix}robotiq_hande_link"/>
     </joint>
 
     <link name="${prefix}robotiq_hande_link">
-      <inertial>
-        <mass value="0.86387"/>
-        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.0006"/>
-      </inertial>
+      <visual>
+        <origin xyz="0 0 -0.0016" rpy="0 ${-pi/2} ${-pi/2}"/>
+        <geometry>
+          <mesh filename="package://robotiq_hande_description/meshes/hande.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+        <material name="DarkGrey"/>
+      </visual>
 
       <collision>
         <geometry>
@@ -59,17 +62,14 @@
         </geometry>
       </collision>
 
-      <visual>
-        <origin rpy="0 -1.570796 -1.570796" xyz="0 0 -0.0016"/>
-        <geometry>
-          <mesh filename="package://robotiq_hande_description/meshes/hande.dae" scale="1.0 1.0 1.0"/>
-        </geometry>
-        <material name="DarkGrey"/>
-      </visual>
+      <inertial>
+        <mass value="0.86387"/>
+        <inertia ixx="0.001" ixy="0.0" ixz="0.0" iyy="0.001" iyz="0.0" izz="0.0006"/>
+      </inertial>
     </link>
 
     <joint name="${prefix}robotiq_hande_left_finger_joint" type="prismatic">
-      <origin rpy="0 0 0" xyz="0 -0.025 0.0345"/>
+      <origin xyz="0 -0.025 0.0345" rpy="0 0 0"/>
       <parent link="${prefix}robotiq_hande_link"/>
       <child link="${prefix}robotiq_hande_left_finger"/>
       <axis xyz="0 1 0"/>
@@ -77,30 +77,30 @@
     </joint>
 
     <link name="${prefix}robotiq_hande_left_finger">
-      <inertial>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <mass value="0.03804"/>
-        <inertia ixx="1E-9" ixy="0.0" ixz="0.0" iyy="1E-9" iyz="0.0" izz="1E-9"/>
-      </inertial>
-
-      <collision>
-        <origin rpy="0 0 3.1415926" xyz="0 0 0"/>
-        <geometry>
-          <mesh filename="package://robotiq_hande_description/meshes/finger_collision.dae" scale="1.0 1.0 1.0"/>
-        </geometry>
-      </collision>
-
       <visual>
-        <origin rpy="1.570796 0 3.1415926" xyz="0 0 0"/>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi}"/>
         <geometry>
           <mesh filename="package://robotiq_hande_description/meshes/finger.dae" scale="1.0 1.0 1.0"/>
         </geometry>
         <material name="Grey"/>
       </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
+        <geometry>
+          <mesh filename="package://robotiq_hande_description/meshes/finger_collision.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.03804"/>
+        <inertia ixx="1E-9" ixy="0.0" ixz="0.0" iyy="1E-9" iyz="0.0" izz="1E-9"/>
+      </inertial>
     </link>
 
     <joint name="${prefix}robotiq_hande_right_finger_joint" type="prismatic">
-      <origin rpy="0 0 0" xyz="0 0.025 0.0345"/>
+      <origin xyz="0 0.025 0.0345" rpy="0 0 0"/>
       <parent link="${prefix}robotiq_hande_link"/>
       <child link="${prefix}robotiq_hande_right_finger"/>
       <axis xyz="0 -1 0"/>
@@ -109,30 +109,30 @@
     </joint>
 
     <link name="${prefix}robotiq_hande_right_finger">
-      <inertial>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <mass value="0.03804"/>
-        <inertia ixx="1E-9" ixy="0.0" ixz="0.0" iyy="1E-9" iyz="0.0" izz="1E-9"/>
-      </inertial>
-
-      <collision>
-        <origin rpy="0 0 0" xyz="0 0 0"/>
-        <geometry>
-          <mesh filename="package://robotiq_hande_description/meshes/finger_collision.dae" scale="1.0 1.0 1.0"/>
-        </geometry>
-      </collision>
-
       <visual>
-        <origin rpy="1.570796 0 0" xyz="0 0 0"/>
+        <origin xyz="0 0 0" rpy="${pi/2} 0 0"/>
         <geometry>
           <mesh filename="package://robotiq_hande_description/meshes/finger.dae" scale="1.0 1.0 1.0"/>
         </geometry>
         <material name="Grey"/>
       </visual>
+
+      <collision>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <geometry>
+          <mesh filename="package://robotiq_hande_description/meshes/finger_collision.dae" scale="1.0 1.0 1.0"/>
+        </geometry>
+      </collision>
+
+      <inertial>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
+        <mass value="0.03804"/>
+        <inertia ixx="1E-9" ixy="0.0" ixz="0.0" iyy="1E-9" iyz="0.0" izz="1E-9"/>
+      </inertial>
     </link>
 
     <joint name="${prefix}robotiq_hande_end_joint" type="fixed">
-      <origin rpy="0 0 0" xyz="0 0 0.095"/>
+      <origin xyz="0 0 0.095" rpy="0 0 0"/>
       <parent link="${prefix}robotiq_hande_link"/>
       <child link="${prefix}robotiq_hande_end"/>
     </joint>
