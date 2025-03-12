@@ -4,10 +4,12 @@
 
 [![pre-commit](https://img.shields.io/badge/pre--commit-enabled-brightgreen?logo=pre-commit)](https://github.com/pre-commit/pre-commit)
 
-This package contains meshes and URDF description of [Robotiq Hand-E gripper](https://robotiq.com/products/hand-e-adaptive-robot-gripper) dedicated for Universal Robots e-series.
+This package contains meshes and URDF description of [Robotiq Hand-E gripper](https://robotiq.com/products/hand-e-adaptive-robot-gripper). It was originally developed for integration with Universal Robots e-series (UR5e), however it is be possible to change the coupler model to fit your needs. **PRs are welcome!**
+
 
 - The gripper comes with coupler model (but without flange).
 - This repository comes with CAD models imported from STEP files to FreeCAD format (FCStd).
+  - These CAD models are taken from the official [Robotiq Support page](https://robotiq.com/support).
 - Package has been developed and tested in ROS 2 Humble.
 - The definitions for the `ros2_control` framework are available in the [robotiq_hande_gripper.ros2_control.xacro](./urdf/robotiq_hande_gripper.ros2_control.xacro) file.
 
