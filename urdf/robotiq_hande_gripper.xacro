@@ -5,6 +5,7 @@
   -->
 
   <xacro:include filename="$(find robotiq_hande_description)/urdf/robotiq_hande_gripper.ros2_control.xacro"/>
+  <xacro:include filename="$(find robotiq_hande_description)/urdf/cylinder_inertial.xacro"/>
 
   <xacro:macro name="robotiq_hande_gripper" params="name prefix parent grip_pos_min grip_pos_max tty baudrate parity data_bits stop_bit slave_id use_fake_hardware coupler_mass:=0.119">
     <!-- ros2_control parameters  -->
@@ -31,8 +32,8 @@
     <xacro:arg name="coupler_shell_height" default="0.0169"/>
     <xacro:arg name="coupler_parent_cutoff" default="0.003"/>
     <xacro:arg name="coupler_hande_cutoff" default="0.0029"/>
-
     <xacro:arg name="hande_height" default="0.099"/>
+    <xacro:arg name="hande_radius" default="0.0375"/>
 
     <joint name="${prefix}robotiq_hande_coupler_joint" type="fixed">
       <origin xyz="0 0 0" rpy="0 0 ${-pi/2.0}"/>
@@ -54,11 +55,7 @@
         </geometry>
       </collision>
 
-      <inertial>
-        <mass value="${coupler_mass}"/>
-        <!-- TODO: Parametrize inertia in terms of perpendicular axis to a solid cylinder -->
-        <inertia ixx="6.17674E-5" ixy="0.0" ixz="0.0" iyy="6.17674E-5" iyz="0.0" izz="1.18125E-4"/>
-      </inertial>
+      <xacro:cylinder_inertial r="$(arg hande_radius)" h="$(arg coupler_shell_height)" m="${coupler_mass}"/>
     </link>
 
     <joint name="${prefix}robotiq_hande_base_joint" type="fixed">
@@ -82,11 +79,7 @@
         </geometry>
       </collision>
 
-      <inertial>
-        <mass value="0.86387"/>
-        <!-- TODO: Parametrize inertia in terms of perpendicular axis to a solid cylinder -->
-        <inertia ixx="1E-3" ixy="0.0" ixz="0.0" iyy="1E-3" iyz="0.0" izz="6E-4"/>
-      </inertial>
+      <xacro:cylinder_inertial r="$(arg hande_radius)" h="$(arg hande_height)" m="0.86387"/>
     </link>
 
     <joint name="${prefix}robotiq_hande_left_finger_joint" type="prismatic">
