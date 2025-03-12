@@ -1,7 +1,7 @@
 <?xml version="1.0"?>
 <robot xmlns:xacro="http://ros.org/wiki/xacro">
   <!--
-    Based on the URDF file by Cristian C Beltran-Hernandez
+    Original URDF file by Cristian C Beltran-Hernandez
   -->
 
   <xacro:include filename="$(find robotiq_hande_description)/urdf/robotiq_hande_gripper.ros2_control.xacro"/>
@@ -51,7 +51,7 @@
       <collision>
         <origin xyz="0 0 ${$(arg coupler_shell_height)/2 - $(arg coupler_parent_cutoff)}" rpy="0 0 0"/>
         <geometry>
-          <cylinder length="$(arg coupler_shell_height)" radius="0.039"/>
+          <cylinder length="$(arg coupler_shell_height)" radius="${$(arg hande_radius) + 0.001}"/>
         </geometry>
       </collision>
 
@@ -75,7 +75,7 @@
       <collision>
         <origin xyz="0 0 ${($(arg hande_height) + $(arg coupler_hande_cutoff) + 0.005) / 2}" rpy="0 0 0"/>
         <geometry>
-          <cylinder length="${($(arg hande_height) + $(arg coupler_hande_cutoff) + 0.005) / 1}" radius="0.039"/>
+          <cylinder length="${$(arg hande_height) + $(arg coupler_hande_cutoff) + 0.005}" radius="${$(arg hande_radius) + 0.001}"/>
         </geometry>
       </collision>
 
