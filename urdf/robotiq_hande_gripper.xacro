@@ -22,17 +22,20 @@
       use_fake_hardware="${use_fake_hardware}"
     />
 
-    <!-- Robotiq Coupler -->
-    <!--  + Height added by the coupler (16.9mm) -->
-    <!--  + Reference frame at the middle (6.95mm) -->
+    <!-- Robotiq Hand-E specs -->
+    <!--  + Height added by the IO coupler: 11.0mm -->
+    <!--  + Height added by the Hand-E: 99.0mm -->
     <!--  + Coupler mass includes the bolts -->
 
-    <xacro:arg name="base_joint_z_offset" default="0.055"/>
-    <xacro:arg name="coupler_depth" default="0.00294"/>
-    <xacro:arg name="base_to_coupler_offset" default="0.00145"/>
+    <xacro:arg name="coupler_height" default="0.011"/>
+    <xacro:arg name="coupler_shell_height" default="0.0169"/>
+    <xacro:arg name="coupler_parent_cutoff" default="0.003"/>
+    <xacro:arg name="coupler_hande_cutoff" default="0.0029"/>
+
+    <xacro:arg name="hande_height" default="0.099"/>
 
     <joint name="${prefix}robotiq_hande_coupler_joint" type="fixed">
-      <origin xyz="0 0 0.00695" rpy="0 0 ${-pi/2.0}"/>
+      <origin xyz="0 0 0" rpy="0 0 ${-pi/2.0}"/>
       <parent link="${parent}"/>
       <child link="${prefix}robotiq_hande_coupler"/>
     </joint>
@@ -45,45 +48,50 @@
       </visual>
 
       <collision>
+        <origin xyz="0 0 ${$(arg coupler_shell_height)/2 - $(arg coupler_parent_cutoff)}" rpy="0 0 0"/>
         <geometry>
-          <cylinder length="0.014" radius="0.039"/>
+          <cylinder length="$(arg coupler_shell_height)" radius="0.039"/>
         </geometry>
       </collision>
 
       <inertial>
         <mass value="${coupler_mass}"/>
+        <!-- TODO: Parametrize intertia in terms of perpendicular axis to a solid cylinder -->
         <inertia ixx="6.17674E-5" ixy="0.0" ixz="0.0" iyy="6.17674E-5" iyz="0.0" izz="1.18125E-4"/>
       </inertial>
     </link>
 
     <joint name="${prefix}robotiq_hande_base_joint" type="fixed">
-      <origin xyz="0 0 ${$(arg base_joint_z_offset) + $(arg coupler_depth) - $(arg base_to_coupler_offset)}" rpy="0 0 0"/>
+      <origin xyz="0 0 $(arg coupler_height)" rpy="0 0 0"/>
       <parent link="${prefix}robotiq_hande_coupler"/>
       <child link="${prefix}robotiq_hande_link"/>
     </joint>
 
+    
     <link name="${prefix}robotiq_hande_link">
       <visual>
-        <origin xyz="0 0 0" rpy="0 ${-pi/2} 0"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
           <mesh filename="package://robotiq_hande_description/meshes/hande.dae" scale="1.0 1.0 1.0"/>
         </geometry>
       </visual>
 
       <collision>
+        <origin xyz="0 0 ${($(arg hande_height) + $(arg coupler_hande_cutoff) + 0.005) / 2}" rpy="0 0 0"/>
         <geometry>
-          <cylinder length="0.099" radius="0.039"/>
+          <cylinder length="${($(arg hande_height) + $(arg coupler_hande_cutoff) + 0.005) / 1}" radius="0.039"/>
         </geometry>
       </collision>
 
       <inertial>
         <mass value="0.86387"/>
+        <!-- TODO: Parametrize intertia in terms of perpendicular axis to a solid cylinder -->
         <inertia ixx="1E-3" ixy="0.0" ixz="0.0" iyy="1E-3" iyz="0.0" izz="6E-4"/>
       </inertial>
     </link>
 
     <joint name="${prefix}robotiq_hande_left_finger_joint" type="prismatic">
-      <origin xyz="-0.025 0 0.0345" rpy="0 0 0"/>
+      <origin xyz="0 0 $(arg hande_height)" rpy="0 0 0"/>
       <parent link="${prefix}robotiq_hande_link"/>
       <child link="${prefix}robotiq_hande_left_finger"/>
       <axis xyz="1 0 0"/>
@@ -92,14 +100,14 @@
 
     <link name="${prefix}robotiq_hande_left_finger">
       <visual>
-        <origin xyz="0 0 0" rpy="${pi/2} 0 ${pi/2}"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
           <mesh filename="package://robotiq_hande_description/meshes/finger.dae" scale="1.0 1.0 1.0"/>
         </geometry>
       </visual>
 
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 ${pi/2}"/>
+        <origin xyz="0 0 0" rpy="0 0 0"/>
         <geometry>
           <mesh filename="package://robotiq_hande_description/meshes/finger_collision.dae" scale="1.0 1.0 1.0"/>
         </geometry>
@@ -113,7 +121,7 @@
     </link>
 
     <joint name="${prefix}robotiq_hande_right_finger_joint" type="prismatic">
-      <origin xyz="0.025 0 0.0345" rpy="0 0 0"/>
+      <origin xyz="0 0 $(arg hande_height)" rpy="0 0 0"/>
       <parent link="${prefix}robotiq_hande_link"/>
       <child link="${prefix}robotiq_hande_right_finger"/>
       <axis xyz="-1 0 0"/>
@@ -123,14 +131,14 @@
 
     <link name="${prefix}robotiq_hande_right_finger">
       <visual>
-        <origin xyz="0 0 0" rpy="${pi/2} 0 ${-pi/2}"/>
+        <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
         <geometry>
           <mesh filename="package://robotiq_hande_description/meshes/finger.dae" scale="1.0 1.0 1.0"/>
         </geometry>
       </visual>
 
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 ${-pi/2}"/>
+        <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
         <geometry>
           <mesh filename="package://robotiq_hande_description/meshes/finger_collision.dae" scale="1.0 1.0 1.0"/>
         </geometry>
@@ -144,7 +152,7 @@
     </link>
 
     <joint name="${prefix}robotiq_hande_end_joint" type="fixed">
-      <origin xyz="0 0 0.095" rpy="0 0 0"/>
+      <origin xyz="0 0 ${$(arg hande_height) + 0.0465}" rpy="0 0 0"/>
       <parent link="${prefix}robotiq_hande_link"/>
       <child link="${prefix}robotiq_hande_end"/>
     </joint>
