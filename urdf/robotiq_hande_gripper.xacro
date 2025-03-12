@@ -6,9 +6,21 @@
 
   <xacro:include filename="$(find robotiq_hande_description)/urdf/robotiq_hande_gripper.ros2_control.xacro"/>
 
-  <xacro:macro name="robotiq_hande_gripper" params="name prefix parent tty use_fake_hardware coupler_mass:=0.119">
+  <xacro:macro name="robotiq_hande_gripper" params="name prefix parent grip_pos_min grip_pos_max tty baudrate parity data_bits stop_bit slave_id use_fake_hardware coupler_mass:=0.119">
     <!-- ros2_control parameters  -->
-    <xacro:robotiq_hande_ros2_control name="${name}" prefix="${prefix}" tty="${tty}" use_fake_hardware="${use_fake_hardware}"/>
+    <xacro:robotiq_hande_ros2_control
+      name="${name}"
+      prefix="${prefix}"
+      grip_pos_min="${grip_pos_min}"
+      grip_pos_max="${grip_pos_max}"
+      tty="${tty}"
+      baudrate="${baudrate}"
+      parity="${parity}"
+      data_bits="${data_bits}"
+      stop_bit="${stop_bit}"
+      slave_id="${slave_id}"
+      use_fake_hardware="${use_fake_hardware}"
+    />
 
     <!-- Robotiq Coupler -->
     <!--  + Height added by the coupler (16.9mm) -->
@@ -75,7 +87,7 @@
       <parent link="${prefix}robotiq_hande_link"/>
       <child link="${prefix}robotiq_hande_left_finger"/>
       <axis xyz="1 0 0"/>
-      <limit effort="130" lower="0" upper="0.025" velocity="0.15"/>
+      <limit effort="130" lower="${grip_pos_min}" upper="${grip_pos_max}" velocity="0.15"/>
     </joint>
 
     <link name="${prefix}robotiq_hande_left_finger">
@@ -105,7 +117,7 @@
       <parent link="${prefix}robotiq_hande_link"/>
       <child link="${prefix}robotiq_hande_right_finger"/>
       <axis xyz="-1 0 0"/>
-      <limit effort="130" lower="0" upper="0.025" velocity="0.15"/>
+      <limit effort="130" lower="${grip_pos_min}" upper="${grip_pos_max}" velocity="0.15"/>
       <mimic joint="${prefix}robotiq_hande_left_finger_joint" multiplier="1" offset="0"/>
     </joint>
 
