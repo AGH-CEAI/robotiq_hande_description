@@ -8,9 +8,10 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ## [Unreleased]
 
 ### Added
-* [PR-1](https://github.com/AGH-CEAI/robotiq_hande_description/pull/1) - Configuration parameters for ModbusRTU
+* [PR-1](https://github.com/AGH-CEAI/robotiq_hande_description/pull/1) - Configuration parameters for ModbusRTU.
 
 ### Changed
+* [PR-3](https://github.com/AGH-CEAI/robotiq_hande_description/pull/3) - Changed the coupler model and simplified URDF files by editing the models.
 
 ### Deprecated
 
