@@ -17,6 +17,6 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Removed
 
 ### Fixed
-* [PR-2] (https://github.com/AGH-CEAI/robotiq_hande_description/pull/2) - Removed unnecessary quotation marks from parameter values.
+* [PR-2](https://github.com/AGH-CEAI/robotiq_hande_description/pull/2) - Removed unnecessary quotation marks from parameter values.
 
 ### Security
