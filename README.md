@@ -22,7 +22,7 @@ This package contains meshes and URDF description of [Robotiq Hand-E gripper](ht
 
 ## Usage
 
-In your URDF (Xacro) file include the Hand-E definition. Provide an unique name and the parent link (for instance `tool0`) as the parameters:
+In your URDF (Xacro) file include the Hand-E definition. Provide a unique name and the parent link (for instance `tool0`) as the parameters:
 
 ```xml
 <xacro:include filename="$(find robotiq_hande_description)/urdf/robotiq_hande_gripper.xacro" />
