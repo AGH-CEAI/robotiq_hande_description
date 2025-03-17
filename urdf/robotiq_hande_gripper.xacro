@@ -55,7 +55,9 @@
         </geometry>
       </collision>
 
-      <xacro:cylinder_inertial r="$(arg hande_radius)" h="$(arg coupler_shell_height)" m="${coupler_mass}"/>
+      <xacro:cylinder_inertial r="$(arg hande_radius)" h="$(arg coupler_shell_height)" m="${coupler_mass}">
+        <origin xyz="0 0 ${$(arg coupler_shell_height) / 2 - $(arg coupler_parent_cutoff)}" rpy="0 0 0"/>
+      </xacro:cylinder_inertial>
     </link>
 
     <joint name="${prefix}robotiq_hande_base_joint" type="fixed">
@@ -79,7 +81,9 @@
         </geometry>
       </collision>
 
-      <xacro:cylinder_inertial r="$(arg hande_radius)" h="$(arg hande_height)" m="0.86387"/>
+      <xacro:cylinder_inertial r="$(arg hande_radius)" h="$(arg hande_height)" m="0.86387">
+        <origin xyz="0 0 ${$(arg hande_height) / 2}" rpy="0 0 0"/>
+      </xacro:cylinder_inertial>
     </link>
 
     <joint name="${prefix}robotiq_hande_left_finger_joint" type="prismatic">
