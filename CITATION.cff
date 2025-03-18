@@ -10,6 +10,6 @@ authors:
   - family-names: Płachno
     given-names: Jakub
 title: "Robotiq Hand-E ROS 2 Description Package"
-version: 0.1.0
+version: 0.1.1
 identifiers:
 date-released: 2025-03-18
