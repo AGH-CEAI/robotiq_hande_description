@@ -5,7 +5,7 @@
   -->
 
   <xacro:include filename="$(find robotiq_hande_description)/urdf/robotiq_hande_gripper.ros2_control.xacro"/>
-  <xacro:include filename="$(find robotiq_hande_description)/urdf/robotiq_hande_cylinder_inertial.xacro"/>
+  <xacro:include filename="$(find robotiq_hande_description)/urdf/cylinder_inertial.xacro"/>
 
   <xacro:macro name="robotiq_hande_gripper" params="name prefix parent grip_pos_min grip_pos_max tty baudrate parity data_bits stop_bit slave_id use_fake_hardware coupler_mass:=0.119">
     <!-- ros2_control parameters  -->
