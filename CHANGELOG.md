@@ -12,6 +12,9 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 ### Deprecated
 ### Removed
 ### Fixed
+
+* [PR-6](https://github.com/AGH-CEAI/robotiq_hande_description/pull/6) - Added prefix to inertial macro name. Added descriptive names for params.
+
 ### Security
 
 ## [0.1.0] - 2025-03-13
