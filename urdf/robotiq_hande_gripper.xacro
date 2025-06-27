@@ -24,7 +24,7 @@
             coupler_mass:=0.119
             xyz:='0 0 0'
             rpy:='0 0 0'"
-    >
+  > 
 
     <!-- ros2_control parameters  -->
     <xacro:robotiq_hande_ros2_control
