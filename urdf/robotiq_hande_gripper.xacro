@@ -14,13 +14,17 @@
             parent
             grip_pos_min
             grip_pos_max
-            tty
+            tty_port
             baudrate
             parity
             data_bits
             stop_bit
             slave_id
             use_fake_hardware
+            frequency_hz:=10
+            create_socat_tty:=false
+            ip_adress:=192.168.100.10
+            port:=54321
             coupler_mass:=0.119
             xyz:='0 0 0'
             rpy:='0 0 0'"
@@ -31,12 +35,16 @@
       prefix="${prefix}"
       grip_pos_min="${grip_pos_min}"
       grip_pos_max="${grip_pos_max}"
-      tty="${tty}"
+      tty_port="${tty_port}"
       baudrate="${baudrate}"
       parity="${parity}"
       data_bits="${data_bits}"
       stop_bit="${stop_bit}"
       slave_id="${slave_id}"
+      frequency_hz="${frequency_hz}"
+      create_socat_tty="${create_socat_tty}"
+      ip_adress="${ip_adress}"
+      port="${port}"
       use_fake_hardware="${use_fake_hardware}"
     />
 
