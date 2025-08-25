@@ -13,6 +13,8 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Changed
 
+* [PR-15](https://github.com/AGH-CEAI/robotiq_hande_description/pull/15) - Renamed `ip_adress` to `ip_address`.
+
 * [PR-14](https://github.com/AGH-CEAI/robotiq_hande_description/pull/14) - Updated CMake version from `3.8` to `3.16`; changed ros2_control param name `tty` to `tty_port`.
 
 
