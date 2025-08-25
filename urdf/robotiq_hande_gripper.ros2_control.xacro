@@ -25,7 +25,7 @@
 
           <param name="create_socat_tty">${create_socat_tty}</param>
           <param name="socat_ip_address">${socat_ip_address}</param>
-          <param name="socat_port">${port}</param>
+          <param name="socat_port">${socat_port}</param>
         </xacro:unless>
       </hardware>
 
