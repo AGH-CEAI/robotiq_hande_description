@@ -5,8 +5,8 @@
   -->
 
   <xacro:include filename="$(find robotiq_hande_description)/urdf/robotiq_hande_gripper.ros2_control.xacro"/>
-  <xacro:include filename="$(find robotiq_hande_description)/urdf/cylinder_inertial.xacro"/>
-  <xacro:include filename="$(find robotiq_hande_description)/urdf/box_inertial.xacro"/>
+  <xacro:include filename="$(find robotiq_hande_description)/urdf/cylinder_inertia.xacro"/>
+  <xacro:include filename="$(find robotiq_hande_description)/urdf/box_inertia.xacro"/>
 
   <xacro:macro
     name="robotiq_hande_gripper"
@@ -61,6 +61,9 @@
     <xacro:arg name="hande_height" default="0.099"/>
     <xacro:arg name="hande_radius" default="0.0375"/>
 
+    <xacro:property name="hande_body_mass" value="0.86387"/>
+    <xacro:property name="finger_mass" value="0.03804"/>
+
     <joint name="${prefix}robotiq_hande_coupler_joint" type="fixed">
       <origin xyz="${xyz}" rpy="${rpy}"/>
       <parent link="${parent}"/>
@@ -81,9 +84,11 @@
         </geometry>
       </collision>
 
-      <xacro:__robotiq_hande_cylinder_inertial radius="$(arg hande_radius)" height="$(arg coupler_shell_height)" mass="${coupler_mass}">
+      <inertial>
         <origin xyz="0 0 ${$(arg coupler_shell_height) / 2 - $(arg coupler_parent_cutoff)}" rpy="0 0 0"/>
-      </xacro:__robotiq_hande_cylinder_inertial>
+        <mass value="${coupler_mass}"/>
+        <xacro:__robotiq_hande_cylinder_inertia radius="$(arg hande_radius)" height="$(arg coupler_shell_height)" mass="${coupler_mass}"/>
+      </inertial>
     </link>
 
     <joint name="${prefix}robotiq_hande_base_joint" type="fixed">
@@ -107,9 +112,11 @@
         </geometry>
       </collision>
 
-      <xacro:__robotiq_hande_cylinder_inertial radius="$(arg hande_radius)" height="$(arg hande_height)" mass="0.86387">
+      <inertial>
         <origin xyz="0 0 ${$(arg hande_height) / 2}" rpy="0 0 0"/>
-      </xacro:__robotiq_hande_cylinder_inertial>
+        <mass value="${hande_body_mass}"/>
+        <xacro:__robotiq_hande_cylinder_inertia radius="$(arg hande_radius)" height="$(arg hande_height)" mass="${hande_body_mass}"/>
+      </inertial>
     </link>
 
     <joint name="${prefix}robotiq_hande_left_finger_joint" type="prismatic">
@@ -130,16 +137,22 @@
 
       <collision>
         <origin xyz="0.007500 -0.000100 0.016275" rpy="0 0 0"/>
-        <geometry><box size="0.00700 0.02120 0.02055"/></geometry>
+        <geometry>
+          <box size="0.00700 0.02120 0.02055"/>
+        </geometry>
       </collision>
       <collision>
         <origin xyz="0.003250 -0.000050 0.037050" rpy="0 0 0"/>
-        <geometry><box size="0.00650 0.02110 0.02100"/></geometry>
+        <geometry>
+          <box size="0.00650 0.02110 0.02100"/>
+        </geometry>
       </collision>
 
-      <xacro:__robotiq_hande_box_inertial x="0.01100" y="0.02120" z="0.04155" mass="0.03804">
+      <inertial>
         <origin xyz="0.005500 -0.000100 0.026775" rpy="0 0 0"/>
-      </xacro:__robotiq_hande_box_inertial>
+        <mass value="${finger_mass}"/>
+        <xacro:__robotiq_hande_box_inertia size_x="0.01100" size_y="0.02120" size_z="0.04155" mass="${finger_mass}"/>
+      </inertial>
     </link>
 
     <joint name="${prefix}robotiq_hande_right_finger_joint" type="prismatic">
@@ -161,16 +174,22 @@
 
       <collision>
         <origin xyz="-0.007500 0.000100 0.016275" rpy="0 0 0"/>
-        <geometry><box size="0.00700 0.02120 0.02055"/></geometry>
+        <geometry>
+          <box size="0.00700 0.02120 0.02055"/>
+        </geometry>
       </collision>
       <collision>
         <origin xyz="-0.003250 0.000050 0.037050" rpy="0 0 0"/>
-        <geometry><box size="0.00650 0.02110 0.02100"/></geometry>
+        <geometry>
+          <box size="0.00650 0.02110 0.02100"/>
+        </geometry>
       </collision>
 
-      <xacro:__robotiq_hande_box_inertial x="0.01100" y="0.02120" z="0.04155" mass="0.03804">
+      <inertial>
         <origin xyz="-0.005500 0.000100 0.026775" rpy="0 0 0"/>
-      </xacro:__robotiq_hande_box_inertial>
+        <mass value="${finger_mass}"/>
+        <xacro:__robotiq_hande_box_inertia size_x="0.01100" size_y="0.02120" size_z="0.04155" mass="${finger_mass}"/>
+      </inertial>
     </link>
 
     <joint name="${prefix}robotiq_hande_end_joint" type="fixed">
