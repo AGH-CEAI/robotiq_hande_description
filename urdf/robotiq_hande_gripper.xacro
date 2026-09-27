@@ -6,6 +6,7 @@
 
   <xacro:include filename="$(find robotiq_hande_description)/urdf/robotiq_hande_gripper.ros2_control.xacro"/>
   <xacro:include filename="$(find robotiq_hande_description)/urdf/cylinder_inertial.xacro"/>
+  <xacro:include filename="$(find robotiq_hande_description)/urdf/box_inertial.xacro"/>
 
   <xacro:macro
     name="robotiq_hande_gripper"
@@ -128,17 +129,17 @@
       </visual>
 
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <geometry>
-          <mesh filename="package://robotiq_hande_description/meshes/finger_collision.dae" scale="1.0 1.0 1.0"/>
-        </geometry>
+        <origin xyz="0.007500 -0.000100 0.016275" rpy="0 0 0"/>
+        <geometry><box size="0.00700 0.02120 0.02055"/></geometry>
+      </collision>
+      <collision>
+        <origin xyz="0.003250 -0.000050 0.037050" rpy="0 0 0"/>
+        <geometry><box size="0.00650 0.02110 0.02100"/></geometry>
       </collision>
 
-      <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <mass value="0.03804"/>
-        <inertia ixx="1E-9" ixy="0.0" ixz="0.0" iyy="1E-9" iyz="0.0" izz="1E-9"/>
-      </inertial>
+      <xacro:__robotiq_hande_box_inertial x="0.01100" y="0.02120" z="0.04155" mass="0.03804">
+        <origin xyz="0.005500 -0.000100 0.026775" rpy="0 0 0"/>
+      </xacro:__robotiq_hande_box_inertial>
     </link>
 
     <joint name="${prefix}robotiq_hande_right_finger_joint" type="prismatic">
@@ -159,17 +160,17 @@
       </visual>
 
       <collision>
-        <origin xyz="0 0 0" rpy="0 0 ${pi}"/>
-        <geometry>
-          <mesh filename="package://robotiq_hande_description/meshes/finger_collision.dae" scale="1.0 1.0 1.0"/>
-        </geometry>
+        <origin xyz="-0.007500 0.000100 0.016275" rpy="0 0 0"/>
+        <geometry><box size="0.00700 0.02120 0.02055"/></geometry>
+      </collision>
+      <collision>
+        <origin xyz="-0.003250 0.000050 0.037050" rpy="0 0 0"/>
+        <geometry><box size="0.00650 0.02110 0.02100"/></geometry>
       </collision>
 
-      <inertial>
-        <origin xyz="0 0 0" rpy="0 0 0"/>
-        <mass value="0.03804"/>
-        <inertia ixx="1E-9" ixy="0.0" ixz="0.0" iyy="1E-9" iyz="0.0" izz="1E-9"/>
-      </inertial>
+      <xacro:__robotiq_hande_box_inertial x="0.01100" y="0.02120" z="0.04155" mass="0.03804">
+        <origin xyz="-0.005500 0.000100 0.026775" rpy="0 0 0"/>
+      </xacro:__robotiq_hande_box_inertial>
     </link>
 
     <joint name="${prefix}robotiq_hande_end_joint" type="fixed">
