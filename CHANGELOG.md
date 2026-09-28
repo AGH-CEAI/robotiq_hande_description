@@ -9,9 +9,15 @@ and this project adheres to [Semantic Versioning](https://semver.org/spec/v2.0.0
 
 ### Added
 ### Changed
+
+* [PR-20](https://github.com/AGH-CEAI/robotiq_hande_description/pull/20) - Finger collision geometry now uses box primitives instead of a COLLADA mesh.
+
 ### Deprecated
 ### Removed
 ### Fixed
+
+* [PR-20](https://github.com/AGH-CEAI/robotiq_hande_description/pull/20) - Finger inertia and centre of mass were placeholders; replaced with a solid-cuboid approximation via a new box inertial macro.
+
 ### Security
 
 ## [0.2.0] - 2025-08-25

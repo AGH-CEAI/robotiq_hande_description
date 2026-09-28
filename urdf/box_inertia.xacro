@@ -1,0 +1,13 @@
+<?xml version="1.0"?>
+<robot xmlns:xacro="http://ros.org/wiki/xacro">
+  <xacro:macro name="__robotiq_hande_box_inertia" params="size_x size_y size_z mass">
+    <inertia
+      ixx="${0.0833333 * mass * ((size_y * size_y) + (size_z * size_z))}"
+      ixy="0.0"
+      ixz="0.0"
+      iyy="${0.0833333 * mass * ((size_x * size_x) + (size_z * size_z))}"
+      iyz="0.0"
+      izz="${0.0833333 * mass * ((size_x * size_x) + (size_y * size_y))}"
+    />
+  </xacro:macro>
+</robot>
